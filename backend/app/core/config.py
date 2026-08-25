@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     VERSION: str = "1.0.0"
     API_V1_STR: str = "/api/v1"
     ENVIRONMENT: str = os.getenv("ENVIRONMENT", "development")
+    FRONTEND_URL: str = "http://localhost:5173"
 
     # Security & Authentication
     SECRET_KEY: str = os.getenv("JWT_SECRET_KEY", "civicpulse-production-secure-random-jwt-key-2026")
@@ -31,7 +32,8 @@ class Settings(BaseSettings):
         "http://127.0.0.1:3000",
         "http://localhost:5173",
         "http://127.0.0.1:5173",
-        "*"
+        "*",
+        FRONTEND_URL,
     ]
 
     model_config = SettingsConfigDict(
