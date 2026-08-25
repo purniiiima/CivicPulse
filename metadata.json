@@ -1,0 +1,6 @@
+{
+  "name": "CivicPulse",
+  "description": "A modern civic problem reporting and resolution platform empowering citizens and municipal teams with automated data synchronization.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
