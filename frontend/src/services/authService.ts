@@ -3,6 +3,7 @@ import { AuthUser, StandardRole, UserProfile } from '../types';
 const TOKEN_KEY = 'civicpulse_access_token';
 const USER_KEY = 'civicpulse_auth_user';
 const REMEMBER_KEY = 'civicpulse_remember_me';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export interface AuthTokens {
   accessToken: string;
@@ -245,7 +246,9 @@ export const authService = {
       throw new Error('Passwords do not match. Please re-type and confirm.');
     }
 
-    const res = await fetch('/api/v1/auth/register/citizen', {
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+    const res = await fetch(`${API_BASE_URL}/api/v1/auth/register/citizen`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -307,7 +310,7 @@ export const authService = {
       throw new Error('Passwords do not match. Please re-type and confirm.');
     }
 
-    const res = await fetch('/api/v1/auth/register/worker', {
+    const res = await fetch(`${API_BASE_URL}/api/v1/auth/register/worker`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -371,7 +374,7 @@ export const authService = {
       throw new Error('Please provide both email address and password.');
     }
 
-    const res = await fetch('/api/v1/auth/login', {
+    const res = await fetch(`${API_BASE_URL}/api/v1/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: cleanEmail, password }),
@@ -425,7 +428,7 @@ export const authService = {
     }
 
     try {
-      const res = await fetch('/api/v1/auth/me', {
+      const res = await fetch(`${API_BASE_URL}/api/v1/auth/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
@@ -479,7 +482,7 @@ export const authService = {
       throw new Error('Authentication token required.');
     }
 
-    const res = await fetch('/api/v1/auth/profile', {
+    const res = await fetch(`${API_BASE_URL}/api/v1/auth/profile`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -529,7 +532,7 @@ export const authService = {
       throw new Error('Authentication token required.');
     }
 
-    const res = await fetch('/api/v1/auth/change-password', {
+    const res = await fetch(`${API_BASE_URL}/api/v1/auth/change-password`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -587,7 +590,7 @@ export const authService = {
       throw new Error('Super Admin authentication token required.');
     }
 
-    const res = await fetch('/api/v1/auth/create-org-admin', {
+    const res = await fetch(`${API_BASE_URL}/api/v1/auth/create-org-admin`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -613,7 +616,7 @@ export const authService = {
     const token = this.getToken();
     if (token) {
       try {
-        await fetch('/api/v1/auth/logout', {
+        await fetch(`${API_BASE_URL}/api/v1/auth/logout`, {
           method: 'POST',
           headers: { Authorization: `Bearer ${token}` },
         });

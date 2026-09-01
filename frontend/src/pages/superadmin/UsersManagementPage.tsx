@@ -55,11 +55,12 @@ export const UsersManagementPage: React.FC = () => {
     organizationName?: string;
   } | null>(null);
   const [copiedPassword, setCopiedPassword] = useState(false);
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     const token = authService.getToken();
 
-    fetch('/api/v1/users', {
+    fetch(`${API_BASE_URL}/api/v1/users`, {
       headers: {
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
@@ -71,7 +72,7 @@ export const UsersManagementPage: React.FC = () => {
       })
       .catch(() => setLoading(false));
 
-    fetch('/api/v1/organizations')
+    fetch(`${API_BASE_URL}/api/v1/organizations`)
       .then((res) => (res.ok ? res.json() : []))
       .then((data) => setOrganizations(data))
       .catch(() => {});
@@ -199,7 +200,7 @@ export const UsersManagementPage: React.FC = () => {
         setNewPhone('');
         return;
       } else if (newRole === 'WORKER') {
-        await fetch('/api/v1/auth/register/worker', {
+        await fetch(`${API_BASE_URL}/api/v1/auth/register/worker`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -212,7 +213,7 @@ export const UsersManagementPage: React.FC = () => {
           }),
         });
       } else if (newRole === 'CITIZEN') {
-        await fetch('/api/v1/auth/register/citizen', {
+        await fetch(`${API_BASE_URL}/api/v1/auth/register/citizen`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

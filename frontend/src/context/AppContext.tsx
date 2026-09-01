@@ -150,7 +150,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         headers['Authorization'] = `Bearer ${token}`;
       }
 
-      const res = await fetch('/api/v1/issues', { headers });
+      const res = await fetch(`${API_BASE_URL}/api/v1/issues`, { headers });
       if (res.ok) {
         const rawData = await res.json();
         if (Array.isArray(rawData)) {
@@ -172,7 +172,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         headers['Authorization'] = `Bearer ${token}`;
       }
 
-      const res = await fetch('/api/v1/workers', { headers });
+      const res = await fetch(`${API_BASE_URL}/api/v1/workers`, { headers });
       if (res.ok) {
         const rawData = await res.json();
         if (Array.isArray(rawData)) {
@@ -195,7 +195,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
 
     try {
-      const res = await fetch('/api/v1/notifications', {
+      const res = await fetch(`${API_BASE_URL}/api/v1/notifications`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -299,7 +299,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       if (token) {
         headers['Authorization'] = `Bearer ${token}`;
       }
-      await fetch('/api/v1/notifications/read-all', {
+      await fetch(`${API_BASE_URL}/api/v1/notifications/read-all`, {
         method: 'PATCH',
         headers,
       });
@@ -346,7 +346,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       };
 
       try {
-        const res = await fetch('/api/v1/issues', {
+        const res = await fetch(`${API_BASE_URL}/api/v1/issues`, {
           method: 'POST',
           headers,
           body: JSON.stringify(payload),
@@ -660,7 +660,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       }
 
       try {
-        const res = await fetch('/api/v1/announcements', {
+        const res = await fetch(`${API_BASE_URL}/api/v1/announcements`, {
           method: 'POST',
           headers,
           body: JSON.stringify({

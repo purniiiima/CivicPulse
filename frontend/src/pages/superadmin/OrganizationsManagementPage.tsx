@@ -14,7 +14,9 @@ import {
 import { Organization } from '../../types';
 import { authService } from '../../services/authService';
 
+
 export const OrganizationsManagementPage: React.FC = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [orgs, setOrgs] = useState<Organization[]>([]);
   const [isAddingOrg, setIsAddingOrg] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -25,9 +27,8 @@ export const OrganizationsManagementPage: React.FC = () => {
   const [jurisdictionWard, setJurisdictionWard] = useState('All Metro Wards (1-18)');
   const [contactEmail, setContactEmail] = useState('');
   const [contactPhone, setContactPhone] = useState('');
-
   useEffect(() => {
-    fetch('/api/v1/organizations')
+    fetch(`${API_BASE_URL}/api/v1/organizations`)
       .then((res) => (res.ok ? res.json() : []))
       .then((data) => {
         setOrgs(data);
@@ -42,7 +43,7 @@ export const OrganizationsManagementPage: React.FC = () => {
 
     try {
       const token = authService.getToken();
-      const res = await fetch('/api/v1/organizations', {
+      const res = await fetch(`${API_BASE_URL}/api/v1/organizations`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

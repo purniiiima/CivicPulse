@@ -36,14 +36,15 @@ export const SuperAdminDashboard: React.FC = () => {
     totalOrgAdmins: 0,
     totalSuperAdmins: 0,
   });
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    fetch('/api/v1/organizations')
+    fetch(`${API_BASE_URL}/api/v1/organizations`)
       .then((res) => (res.ok ? res.json() : []))
       .then((data) => setOrganizations(data))
       .catch(() => {});
 
-    fetch('/api/v1/analytics')
+    fetch(`${API_BASE_URL}/api/v1/analytics`)
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data) {
