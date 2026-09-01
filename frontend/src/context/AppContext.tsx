@@ -416,7 +416,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       }
 
       try {
-        const res = await fetch(`/api/v1/issues/${issueId}`, {
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/issues/${issueId}`, {
           method: 'PATCH',
           headers,
           body: JSON.stringify({
@@ -473,7 +473,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       }
 
       try {
-        const res = await fetch(`/api/v1/issues/${issueId}`, {
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/issues/${issueId}`, {
           method: 'PATCH',
           headers,
           body: JSON.stringify({
@@ -529,7 +529,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       }
 
       try {
-        await fetch(`/api/v1/issues/${issueId}/upvote`, {
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/issues/${issueId}/upvote`, {
           method: 'POST',
           headers,
           body: JSON.stringify({ userId: currentUser.id }),
@@ -575,7 +575,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       };
 
       try {
-        const res = await fetch(`/api/v1/issues/${issueId}/comments`, {
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/issues/${issueId}/comments`, {
           method: 'POST',
           headers,
           body: JSON.stringify({ content, author, isInternal }),

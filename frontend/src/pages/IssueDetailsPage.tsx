@@ -58,7 +58,7 @@ export const IssueDetailsPage: React.FC = () => {
     let isMounted = true;
     if (!appIssue && id) {
       setIsLoading(true);
-      fetch(`/api/v1/issues/${encodeURIComponent(id)}`)
+      fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/issues/${encodeURIComponent(id)}`)
         .then((res) => {
           if (!res.ok) throw new Error('Issue not found');
           return res.json();
